@@ -2,10 +2,10 @@ import java.awt.*;
 import javax.swing.JPanel;
 
 /**
- * Write a description of class FractalTreePanel here.
+ * Panel for drawing the Fractal Tree Lab
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Michael Zhang
+ * @version 3/16/2016
  */
 public class FractalTreePanel extends JPanel
 {
@@ -13,16 +13,20 @@ public class FractalTreePanel extends JPanel
     private final int WIDTH = 800;
     private final int HEIGHT = 1000;
     
+    private final double ANGLE = Math.PI / 3;
+    
     private final double DEC_SIZE = .75;
-    private final double ANGLE = Math.pi / 6;
+    
+    private int curr_order;
     
     /**
      * Default constructor for objects of class FractalTreePanel
      */
-    public FractalTreePanel()
+    public FractalTreePanel(int currentOrder)
     {
-        // initialise instance variables
-        x = 0;
+        curr_order = currentOrder;
+        setBackground(Color.BLACK);
+        setPreferredSize(new Dimension(WIDTH, HEIGHT));
     }
 
     /**
@@ -36,16 +40,33 @@ public class FractalTreePanel extends JPanel
      * @param    y    description of parameter y
      * @return    description of the return value
      */
-    public void drawFractal(int x1, int y1, int x2, int y2, double prev_length)
+    public void drawFractal(int order, int x1, int y1, int x2, int y2, double new_angle, Graphics g)
     {
-        if (prev_length  <= 10)
+        double dX, dY, xPos, yPos, xNeg, yNeg;
+        
+        if (order == 1)
         {
             g.drawLine(x1, y1, x2, y2);
         }
         else
         {
-            prev_length = ;
-            drawFractal (x1, y1, x2, y2, 
+            dX = x2 - x1;
+            dY = y2 - y1;
+            
+            double length = (Math.sqrt(dX * dX + dY * dY)) * DEC_SIZE;
+            
+            double new_angle_pos = ANGLE + new_angle;
+            double new_angle_neg = ANGLE - new_angle;
+            
+            xPos = Math.sin(new_angle_pos) * length;
+            yPos = Math.cos(new_angle_pos) * length;
+            
+            xNeg = Math.sin(new_angle_neg) * length;
+            yNeg = Math.cos(new_angle_neg) * length;
+            
+            
+            drawFractal(order - 1, x2, y2, (int) xPos, (int) yPos, new_angle_pos, g);
+            drawFractal(order - 1, x2, y2, (int) xNeg, (int) yNeg, new_angle_neg, g);
         }
     }
     
@@ -64,7 +85,13 @@ public class FractalTreePanel extends JPanel
     {
         super.paintComponent (g);
         
-        drawFractal(//start x, //start y, //end x, //end y, initial length / percentage);
+        g.setColor(Color.GREEN);
+        
+        drawFractal(curr_order, WIDTH / 2, HEIGHT, WIDTH / 2, HEIGHT + 50, 0, g);
     }
-
+    
+    public void setOrder(int order)
+    {
+        curr_order = order;
+    }
 }
