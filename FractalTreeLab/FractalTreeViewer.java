@@ -27,7 +27,7 @@ public class FractalTreeViewer
         frame.setTitle("Fractal Tree Lab");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(WIDTH, HEIGHT);
-        panel = new FractalTreePanel();
+        panel = new FractalTreePanel(5);
         frame.add(panel);
         frame.setVisible(true);
     }
