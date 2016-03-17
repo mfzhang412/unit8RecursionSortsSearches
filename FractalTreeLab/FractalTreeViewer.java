@@ -10,8 +10,8 @@ import javax.swing.*;
 public class FractalTreeViewer
 {
     /** description of instance variable x (add comment for each instance variable) */
-    private final int WIDTH = 800;
-    private final int HEIGHT = 1000;
+    private final int WIDTH = 600;
+    private final int HEIGHT = 600;
     
     private FractalTreePanel panel;
     private JFrame frame;
@@ -27,7 +27,7 @@ public class FractalTreeViewer
         frame.setTitle("Fractal Tree Lab");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(WIDTH, HEIGHT);
-        panel = new FractalTreePanel(5);
+        panel = new FractalTreePanel(15);
         frame.add(panel);
         frame.setVisible(true);
     }
