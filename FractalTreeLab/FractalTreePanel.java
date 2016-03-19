@@ -40,7 +40,7 @@ public class FractalTreePanel extends JPanel
      * @param    y    description of parameter y
      * @return    description of the return value
      */
-    public void drawFractal(int order, int x1, int y1, int x2, int y2, double new_angle, double prev_thick, Graphics g)
+    public void drawFractal(int order, int x1, int y1, int x2, int y2, double new_angle, Graphics g)
     {
         double dX, dY, xPos, yPos, xNeg, yNeg;
         
@@ -57,7 +57,6 @@ public class FractalTreePanel extends JPanel
                 g.setColor(Color.GRAY);
             else
                 g.setColor(Color.GREEN);
-            ((Graphics2D) g).setStroke(new BasicStroke( prev_thick * (float) DEC_SIZE));
             g.drawLine(x1, y1, x2, y2);
             
             double length = (Math.sqrt(dX * dX + dY * dY)) * DEC_SIZE;
@@ -71,8 +70,8 @@ public class FractalTreePanel extends JPanel
             xNeg = x2 - Math.sin(new_angle_neg) * length;
             yNeg = y2 - Math.cos(new_angle_neg) * length;
             
-            drawFractal(order - 1, x2, y2, (int) xPos, (int) yPos, new_angle_pos, prev_thick * (float) DEC_SIZE, g);
-            drawFractal(order - 1, x2, y2, (int) xNeg, (int) yNeg, new_angle_neg, prev_thick * (float) DEC_SIZE, g);
+            drawFractal(order - 1, x2, y2, (int) xPos, (int) yPos, new_angle_pos, g);
+            drawFractal(order - 1, x2, y2, (int) xNeg, (int) yNeg, new_angle_neg, g);
         }
     }
     
