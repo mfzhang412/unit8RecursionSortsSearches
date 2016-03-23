@@ -14,26 +14,41 @@ public class WordChoice
     public WordChoice(String fileName)
     {
         int counter = 0;
-        
+
         File read = new File(fileName);
-        
+
         try
         {
             Scanner in = new Scanner(read);
+            in.useDelimiter("");
+            while(in.hasNext())
+            {
+                counter += 1;
+            }
+            System.out.println("Number of characters: " + counter);
+            counter = 0;
+
+            while(in.hasNext())
+            {
+                counter += 1;
+            }
+            System.out.println("Number of words: " + counter);
+            counter = 0;
+
+            while(in.hasNext())
+            {
+                counter += 1;
+            }
+            System.out.println("Number of lines: " + counter);
         }
-        catch 
+        catch (IOException exception)
         {
-            
+            System.out.println("file not found");
         }
-        Scanner in = new Scanner(read);
-        in.useDelimiter(" ");
-        while(in.hasNext())
-        {
-            String word = in.next();
-        }
-        System.out.println("Number of words: " + counter);
+
+
     }
-    
+
     public static void main (String[] args)
     {
         Scanner s = new Scanner(System.in);
