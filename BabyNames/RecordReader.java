@@ -1,5 +1,7 @@
 import java.util.Scanner;
 
+//print names that comprise the top 50% of boy names and girl names.
+
 /**
    This class processes baby name records.
 */
@@ -7,14 +9,17 @@ public class RecordReader
 {
    private double total;
    private double limit;
-
+   private int bPopulation;
+   private int gPopulation;
+   
    /**
       Constructs a RecordReader with a zero total.
    */
-   public RecordReader(double aLimit)
+   public RecordReader(double aLimit, int bPop, int gPop)
    {
       total = 0;
       limit = aLimit;
+      population = pop;
    }
 
    /**
@@ -24,8 +29,9 @@ public class RecordReader
    */
    public void process(Scanner in)
    {
+      this.totNames(in);
       String name = in.next();
-      int count = in.nextInt();
+      percentTot += in.nextInt();
       double percent = in.nextDouble();
       
       if (total < limit) { System.out.print(name + " "); }
