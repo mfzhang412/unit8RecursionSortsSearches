@@ -10,21 +10,34 @@ public class ArrayUtil
    /**
       Creates an array filled with random values.
       @param length the length of the array
-      @param n the number of possible random values
+      @param n the maximum length of each element of the array
       @return an array filled with length numbers between
       0 and n - 1
    */
-   public static int[] randomIntArray(int length, int n)
+   public static String[] randomStringArray(int length, int n)
    {  
-      int[] a = new int[length];      
+      String[] a = new String[length];
+      int ran = (int) Math.random() * n;
       for (int i = 0; i < a.length; i++)
       {
-         a[i] = generator.nextInt(n);
+         a[i] = ArrayUtil.randomString(ran);
       }
       
       return a;
    }
 
+   private static String randomString(int length)
+   {
+       String str = "";
+       for (int i = 0; i < length; i++)
+       {
+           int random = (int) Math.random() * 26;
+           str += 'a' + random;
+       }
+       
+       return str;
+   }
+   
    /**
       Swaps two entries of an array.
       @param a the array

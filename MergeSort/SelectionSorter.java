@@ -33,11 +33,11 @@ public class SelectionSorter
     
     public static void main (String[] args)
     {
-        int[] a = ArrayUtil.randomIntArray(20,100);
+        String[] a = ArrayUtil.randomStringArray(20,100);
         
         System.out.println(Arrays.toString(a));
         
-        SelectionSorter.sort(a);
+        //SelectionSorter.sort(a);
         
         System.out.println(Arrays.toString(a));
     }
